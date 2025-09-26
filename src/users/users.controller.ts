@@ -9,19 +9,24 @@ import {
   Query,
 } from '@nestjs/common';
 
+import { UsersService } from './users.service';
+
 @Controller('users')
 export class UsersController {
+  //creates a singleton - can use globally
+  constructor(private readonly usersService: UsersService) {}
+
   //we add a waterfall of routes
 
   @Get() //GET users or /users?role=value
   findAll(@Query('role') role?: 'INTERN' | 'ENGINEER' | 'ADMIN') {
-    return [];
+    return this.usersService.findAll(role);
   }
 
   //make sure dynamic routes are added last
   @Get(':id') //GET /users/:id
   findOne(@Param('id') id: string) {
-    return { id };
+    return this.usersService.findOne(+id);
   }
 
   @Post() //POST user
