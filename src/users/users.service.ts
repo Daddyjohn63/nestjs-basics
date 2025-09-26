@@ -53,7 +53,7 @@ export class UsersService {
     email: string;
     role: 'INTERN' | 'ENGINEER' | 'ADMIN';
   }) {
-    const usersByHighestId = [...this.users].sort((a, b) => (b.id = a.id));
+    const usersByHighestId = [...this.users].sort((a, b) => b.id - a.id); //could have user math.max
     const newUser = {
       id: usersByHighestId[0].id + 1,
       ...user,
