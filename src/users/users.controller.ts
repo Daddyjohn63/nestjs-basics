@@ -36,7 +36,7 @@ export class UsersController {
   @Post() //POST user
   create(
     @Body(ValidationPipe)
-    createUserDto: CreateUserDto,
+    createUserDto: CreateUserDto
   ) {
     return this.usersService.create(createUserDto);
   }
@@ -45,7 +45,7 @@ export class UsersController {
   update(
     @Param('id', ParseIntPipe) id: number,
     @Body(ValidationPipe)
-    updateUserDto: UpdateUserDto,
+    updateUserDto: UpdateUserDto
   ) {
     return this.usersService.update(id, updateUserDto);
   }
